@@ -6,16 +6,53 @@ body, html {
   height: 100%;
 }
 
+
+/* TEXT */
+
+h1 {
+  font-size: 60px;
+  color: white;
+}
+
+h2 {
+  font-size: 150px;
+  color: white;
+}
+
+p {
+  color: white;
+}
+
+/* COMPONENTS */
 .outer-container {
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  background-image: linear-gradient(#8AECFE, #90f9d9);
 }
 
 main {
-  height: 800px;
-  width: 500px;
-  background-color: rgb(228, 228, 248);
+  background-color: rgba(58, 58, 122, 0.397);
+  border-radius: 15px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hourly-forecast {
+  display: flex;
+  justify-content: space-around;
+  
+  background-color: #8AECFE;
 }
