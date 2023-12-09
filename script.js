@@ -15,7 +15,7 @@ cityInput.addEventListener("keydown", (e) => {
 getWeather();
 
 async function getWeather() {
-  const response = await fetch('https://api.openweathermap.org/data/2.5/weather?q=Seattle&APPID=c40499f803186cdf6d9140505dded906');
+  const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Seattle&APPID=${weatherKey}`);
   const data = await response.json();
   
   console.log(data);
