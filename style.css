@@ -1,21 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed&display=swap');
+
 * {
   box-sizing: border-box;
 }
 
 body, html {
   height: 100%;
+  font-family: 'Barlow Semi Condensed', sans-serif;
 }
 
 
 /* TEXT */
 
 h1 {
-  font-size: 60px;
+  font-size: 50px;
   color: white;
+  margin-bottom: 20px;
 }
 
 h2 {
-  font-size: 150px;
+  font-size: 120px;
   color: white;
 }
 
@@ -50,9 +54,35 @@ main {
   align-items: center;
 }
 
+.current-weather {
+  display: flex;
+  justify-content: space-around;
+}
+
 .hourly-forecast {
   display: flex;
   justify-content: space-around;
+  padding: 30px;
   
   background-color: #8AECFE;
+}
+
+.dressing-advice {
+  display: flex;
+}
+
+.advice-container {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+}
+
+.dressing-image {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
