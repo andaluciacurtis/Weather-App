@@ -5,7 +5,6 @@
 // Weather necessities:
 // - current weather
 // - weather in an hour, two, three, etc, up to 10
-const apiKey = "c40499f803186cdf6d9140505dded906";
 
 const temperature = document.querySelector('.temperature');
 const weatherDesc = document.querySelector('.weather-desc');
