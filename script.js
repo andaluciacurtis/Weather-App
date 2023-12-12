@@ -8,6 +8,7 @@
 
 const temperature = document.querySelector('.temperature');
 const weatherDesc = document.querySelector('.weather-desc');
+const hourlyForecastContainer = document.querySelector('.hourly-forecast-container');
 
 let units = "imperial";
 let city = "Seattle";
@@ -19,25 +20,43 @@ cityInput.addEventListener("keydown", (e) => {
   }
 })
 
-getCoordinates();
 getWeather();
 
 async function getCoordinates() {
-  const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${weatherKey}`);
+  const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`);
   const data = await response.json();
   
   return [data[0].lat, data[0].lon];
 }
 
 async function getWeather() {
-  const coordinates = await getCoordinates();
-  console.log(coordinates);
+  const coords = await getCoordinates();
+  console.log(coords);
   
-  const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${weatherKey}`);
+  const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${coords[0]}&lon=${coords[1]}&exclude=minutely,daily&appid=${apiKey}&units=${units}`);
   const data = await response.json();
+
   console.log(data);
 
-  let mainWeather = data["weather"][0]["main"];
-  temperature.innerHTML = `${Math.round(data["main"]["temp"])}°F`;
+  // Main weather info
+  let mainWeather = data["current"]["weather"][0]["description"];
+  temperature.innerHTML = `${Math.round(data["current"]["temp"])}°F`;
   weatherDesc.innerHTML = `${mainWeather}`;
+
+  // Creating the hourly forecast
+  let hourlyForecast = data["hourly"];
+
+  for (let i = 0; i < 10; i++) {
+    let hourDiv = document.createElement("div");
+    let hourWeather = hourlyForecast[i]["weather"][0]["main"];
+    let hourTemp = hourlyForecast[i]["temp"];
+
+    hourDiv.innerHTML = `
+      <p>${hourWeather}</p>
+      <p>${hourTemp}</p>
+    `
+    hourlyForecastContainer.appendChild(hourDiv);
+  }
+
+  
 }

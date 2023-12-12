@@ -58,6 +58,8 @@ main {
   flex-direction: column;
   gap: 20px;
   padding: 20px;
+
+  width: 450px;
 }
 
 .top-row {
@@ -72,10 +74,12 @@ main {
   justify-content: space-around;
 }
 
-.hourly-forecast {
+.hourly-forecast-container {
   display: flex;
-  justify-content: space-around;
+  gap: 20px;
   padding: 30px;
+
+  overflow-x: auto;
   
   background-color: #8AECFE;
 }
