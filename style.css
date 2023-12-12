@@ -58,8 +58,9 @@ main {
   flex-direction: column;
   gap: 20px;
   padding: 20px;
+  margin-top: 50px;
 
-  width: 450px;
+  width: 400px;
 }
 
 .top-row {
@@ -72,6 +73,11 @@ main {
 .current-weather {
   display: flex;
   justify-content: space-around;
+}
+
+.temp-container {
+  display: flex;
+  align-items: center;
 }
 
 .hourly-forecast-container {
