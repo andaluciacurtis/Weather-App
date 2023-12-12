@@ -5,6 +5,7 @@
 // Weather necessities:
 // - current weather
 // - weather in an hour, two, three, etc, up to 10
+const apiKey = "c40499f803186cdf6d9140505dded906";
 
 const temperature = document.querySelector('.temperature');
 const weatherDesc = document.querySelector('.weather-desc');
@@ -38,12 +39,9 @@ async function getCoordinates() {
 
 async function getWeather() {
   const coords = await getCoordinates();
-  console.log(coords);
   
   const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${coords[0]}&lon=${coords[1]}&exclude=minutely,daily&appid=${apiKey}&units=${units}`);
   const data = await response.json();
-
-  console.log(data);
 
   // Main weather info
   let mainWeather = data["current"]["weather"][0]["description"];
@@ -55,10 +53,13 @@ async function getWeather() {
   // Creating the hourly forecast
   let hourlyForecast = data["hourly"];
 
+  while (hourlyForecastContainer.hasChildNodes()) {
+    hourlyForecastContainer.removeChild(hourlyForecastContainer.lastChild);
+  }
+
   for (let i = 0; i < 10; i++) {
     let hour = currentHour + i;
-
-    console.log(hour);
+    
     let hourDiv = document.createElement("div");
     let hourWeather = hourlyForecast[i]["weather"][0]["main"];
     let hourTemp = hourlyForecast[i]["temp"];
