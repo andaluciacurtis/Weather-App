@@ -14,29 +14,29 @@
     <h1 class="title-text">Today's Weather</h1>
     <main>
       <div class="top-row">
-          <input class="city-input" placeholder="Please enter your city">
+          <input class="city-input" placeholder="Enter city...">
           
-        <p>C | F</p>
+        <p><span class="metric">C</span> | <span class="imperial">F</span></p>
           <button>+</button>
         
       </div>
 
       <div class="current-weather">
         <div>
-          <h2>60</h2>
-          <p>Partly cloudy with a high of 65</p>
+          <div class="temp-container">
+            <h2 class="temperature"></h2>
+            <p class="units"></p>
+          </div>
+          
+          <p class="weather-desc"></p>
         </div>
 
         <div>
-          <img src="images/temp-cloud.png" alt="">
+          <img src="Images/temp-cloud.png" alt="">
         </div>
       </div>
 
-      <div class="hourly-forecast">
-        <p>NOW</p>
-        <p>2PM</p>
-        <p>3PM</p>
-      </div>
+      <div class="hourly-forecast-container"></div>
 
       <div class="dressing-advice">
         <div class="advice-container">
@@ -45,7 +45,7 @@
         </div>
 
         <div class="dressing-image">
-          <img src="images/temp-person.png" alt="">
+          <img src="Images/temp-person.png" alt="">
         </div>
       </div>
 
