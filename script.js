@@ -8,11 +8,17 @@
 
 const temperature = document.querySelector('.temperature');
 const weatherDesc = document.querySelector('.weather-desc');
+
+const curWeatherImg = document.querySelector('.current-weather-img')
+
 const hourlyForecastContainer = document.querySelector('.hourly-forecast-container');
 const unitContainer = document.querySelector('.units');
 
 const metricButton = document.querySelector('.metric');
 const imperialButton = document.querySelector('.imperial');
+
+const cloudyImg = `Images/temp-cloud.png`
+
 
 let units = "imperial";
 let unitShorthand = "F";

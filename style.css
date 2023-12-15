@@ -92,8 +92,13 @@ main path {
 .top-row {
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: top;
+
   width: min(500px, 90%);
+}
+
+.top-row h2 {
+  padding-top: 10px;
 }
 
 .current-weather {
@@ -162,7 +167,7 @@ main path {
 
 .selected {
   font-style: bold;
-  color: red;
+  color: black;
 }
 
 @keyframes bg-animation {
