@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+
+:root {
+  --bg-gradient: radial-gradient(white, rgb(211, 255, 182),  #90f9d9, #8AECFE,  #7ec7f8);
+}
+
 body, html {
   height: 100%;
   font-family: 'Barlow Semi Condensed', sans-serif;
@@ -46,11 +51,13 @@ button {
   justify-content: center;
   flex-direction: column;
 
-  background-image: linear-gradient(#8AECFE, #90f9d9);
+  background-image: var(--bg-gradient);
+  background-position: center;
+  animation: bg-animation 3s infinite alternate;
 }
 
 main {
-  background-color: rgba(58, 58, 122, 0.26);
+  background-color: rgba(41, 41, 136, 0.26);
   border-radius: 15px;
 
   display: flex;
@@ -59,7 +66,7 @@ main {
   padding: 20px;
   margin-top: 50px;
 
-  width: 400px;
+  width: min(500px, 90%);
 }
 
 .top-row {
@@ -119,4 +126,9 @@ main {
 .selected {
   font-style: bold;
   color: red;
+}
+
+@keyframes bg-animation {
+  0% {background-size: 100%}
+  100% {background-size: 200%}
 }
