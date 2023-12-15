@@ -16,10 +16,31 @@ const imperialButton = document.querySelector('.imperial');
 
 let units = "imperial";
 let unitShorthand = "F";
-let city = "Tokyo";
+let city = "";
 
 var today = new Date();
 var currentHour = today.getHours();
+
+metricButton.addEventListener("click", ()=>{
+  units = "metric";
+  unitShorthand = "C";
+
+  imperialButton.classList.remove("selected");
+  metricButton.classList.add("selected");
+  
+  getWeather();
+});
+
+imperialButton.addEventListener("click", ()=>{
+  units = "imperial";
+  unitShorthand = "F";
+
+  metricButton.classList.remove("selected");
+  imperialButton.classList.add("selected");
+  
+  getWeather();
+});
+
 
 var cityInput = document.querySelector(".city-input");
 cityInput.addEventListener("keydown", (e) => {

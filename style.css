@@ -9,7 +9,6 @@ body, html {
   font-family: 'Barlow Semi Condensed', sans-serif;
 }
 
-
 /* TEXT */
 
 h1 {
@@ -115,4 +114,9 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.selected {
+  font-style: bold;
+  color: red;
 }
