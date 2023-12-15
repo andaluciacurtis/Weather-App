@@ -79,13 +79,17 @@ async function getWeather() {
 
   for (let i = 0; i < 10; i++) {
     let hour = currentHour + i;
+
+    console.log(hourlyForecast[i]);
     
     let hourDiv = document.createElement("div");
     let hourWeather = hourlyForecast[i]["weather"][0]["main"];
     let hourTemp = hourlyForecast[i]["temp"];
+    let icon = hourlyForecast[i]["weather"][0]["icon"];
 
     hourDiv.innerHTML = `
       <p>${hour}:00</p>
+      <img src="http://openweathermap.org/img/wn/${icon}.png" id="icon">
       <p>${hourWeather}</p>
       <p>${hourTemp}</p>
     `

@@ -6,7 +6,7 @@
 
 
 :root {
-  --bg-gradient: radial-gradient(white, rgb(211, 255, 182),  #90f9d9, #8AECFE,  #7ec7f8);
+  --bg-gradient: linear-gradient(215deg, rgb(250, 255, 182),  #90f9d9, #8AECFE);
 }
 
 body, html {
@@ -52,8 +52,8 @@ button {
   flex-direction: column;
 
   background-image: var(--bg-gradient);
-  background-position: center;
-  animation: bg-animation 3s infinite alternate;
+  background-size: 200%;
+  animation: bg-animation 10s infinite alternate;
 }
 
 main {
@@ -129,6 +129,6 @@ main {
 }
 
 @keyframes bg-animation {
-  0% {background-size: 100%}
-  100% {background-size: 200%}
+  0% {background-position: left}
+  100% {background-position: right}
 }
