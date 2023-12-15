@@ -7,6 +7,8 @@
 
 :root {
   --bg-gradient: linear-gradient(215deg, rgb(250, 255, 182),  #90f9d9, #8AECFE);
+  --main-bg-color: rgb(42, 104, 219, 0.308);
+  --accent-bg: #bbfdff7c;
 }
 
 body, html {
@@ -27,6 +29,11 @@ h2 {
   color: white;
 }
 
+h3 {
+  font-size: 20px;
+  color: white;
+}
+
 p {
   color: white;
 }
@@ -35,7 +42,8 @@ input {
   border: none;
   padding: 5px;
   border-radius: 15px;
-  width: 85%;
+  width: 90%;
+  margin-bottom: 10px;
 }
 
 button {
@@ -57,28 +65,48 @@ button {
 }
 
 main {
-  background-color: rgba(41, 41, 136, 0.26);
-  border-radius: 15px;
+  background-color: var(--main-bg-color);
 
   display: flex;
   flex-direction: column;
   gap: 20px;
   padding: 20px;
-  margin-top: 50px;
+  margin-top: 120px;
+  border-radius: 0 0 15px 15px;
 
   width: min(500px, 90%);
 }
 
+main svg {
+  position: absolute;
+  margin-left: -20px;
+  margin-top: -131px;
+  z-index: 1;
+  width: min(500px, 90%);
+}
+
+main path {
+  fill: var(--main-bg-color);
+}
+
 .top-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  width: 100%;
+  width: min(500px, 90%);
 }
 
 .current-weather {
   display: flex;
-  justify-content: space-around;
+  position: absolute;
+  margin-top: -140px;
+
+  justify-content: center;
+  gap: 80px;
+
+  z-index: 100;
+  width: min(500px, 90%);
+  text-align: center;
 }
 
 .temp-container {
@@ -88,16 +116,24 @@ main {
 
 .hourly-forecast-container {
   display: flex;
-  gap: 20px;
-  padding: 30px;
+  gap: 40px;
+  padding: 15px 30px;
+  border-radius: 15px;
 
+  margin-top: 30px;
+  
   overflow-x: auto;
   
-  background-color: #8AECFE;
+  background-color: var(--accent-bg);
+}
+
+.hour-div {
+  text-align: center;
 }
 
 .dressing-advice {
   display: flex;
+  gap: 20px;
 }
 
 .advice-container {
@@ -112,7 +148,6 @@ main {
 
 .advice-container p {
   padding: 20px;
-  background-color: #8AECFE;
   color: black;
 }
 
@@ -121,6 +156,8 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--accent-bg);
+  border-radius: 100% 0 0 0;
 }
 
 .selected {

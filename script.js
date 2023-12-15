@@ -87,11 +87,12 @@ async function getWeather() {
     let hourTemp = hourlyForecast[i]["temp"];
     let icon = hourlyForecast[i]["weather"][0]["icon"];
 
+    hourDiv.classList.add("hour-div");
+
     hourDiv.innerHTML = `
-      <p>${hour}:00</p>
+      <h3>${hour}:00</h3>
       <img src="http://openweathermap.org/img/wn/${icon}.png" id="icon">
-      <p>${hourWeather}</p>
-      <p>${hourTemp}</p>
+      <p>${Math.round(hourTemp)}°${unitShorthand}</p>
     `
     hourlyForecastContainer.appendChild(hourDiv);
   }
