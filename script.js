@@ -114,3 +114,23 @@ document.getElementById('rainy').addEventListener('click', ()=> {
 document.getElementById('sunny').addEventListener('click', ()=>{
   curWeatherImg.src= "Images/1x/sun.png";
 })
+
+document.getElementById('partcloudy').addEventListener('click', ()=>{
+  curWeatherImg.src= "Images/1x/partcloud.png";
+})
+
+document.getElementById('cloudy').addEventListener('click', ()=>{
+  curWeatherImg.src= "Images/1x/cloud.png";
+})
+
+document.getElementById('snowy').addEventListener('click', ()=>{
+  curWeatherImg.src= "Images/1x/snow.png";
+})
+
+document.getElementById('stormy').addEventListener('click', ()=>{
+  curWeatherImg.src= "Images/1x/storm.png";
+})
+
+document.getElementById('windy').addEventListener('click', ()=>{
+  curWeatherImg.src= "Images/1x/wind.png";
+})

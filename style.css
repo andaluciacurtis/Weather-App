@@ -17,6 +17,24 @@
   --accent-bg: #a1b6e2;
 }
 
+:root:has(#partcloudy:checked) {
+  --bg-gradient: linear-gradient(215deg, #c5d2dd, #87a7d8);
+  --main-bg-color: rgba(75, 102, 255, 0.308);
+  --accent-bg: #a1b6e2;
+}
+
+:root:has(#cloudy:checked) {
+  --bg-gradient: linear-gradient(215deg, #c5d2dd, #87a7d8);
+  --main-bg-color: rgba(75, 102, 255, 0.308);
+  --accent-bg: #a1b6e2;
+}
+
+:root:has(#windy:checked) {
+  --bg-gradient: linear-gradient(215deg, #c5d2dd, #87a7d8);
+  --main-bg-color: rgba(75, 102, 255, 0.308);
+  --accent-bg: #a1b6e2;
+}
+
 :root:has(#snowy:checked) {
   --bg-gradient: linear-gradient(215deg, #ffffff, #dcf8ff, #cfdcff);
   --main-bg-color: rgba(131, 182, 223, 0.308);
@@ -101,6 +119,10 @@ main {
   width: min(500px, 90%);
 }
 
+.theme-toggles {
+  display: flex;
+}
+
 .weather-report-container {
   background-color: var(--main-bg-color);
   
@@ -132,8 +154,8 @@ main path {
 
   justify-content: center;
   text-align: center;
-  
-  gap: 40px;
+
+  gap: 20px;
   
   width: min(500px, 90%);
 }
