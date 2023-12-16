@@ -6,14 +6,15 @@
 
 
 :root:has(#sunny:checked) {
-  --bg-gradient: linear-gradient(215deg, rgb(250, 255, 182),  #90f9d9, #8AECFE);
+  --bg-gradient: linear-gradient(215deg, rgb(250, 255, 182),  #90f5f9, #8ac0fe);
   --main-bg-color: rgb(42, 104, 219, 0.308);
   --accent-bg: #bbfdff7c;
 }
 
 :root:has(#rainy:checked) {
-  --bg-gradient: linear-gradient(45deg, blue, purple);
+  --bg-gradient: linear-gradient(215deg, #c5d2dd, #92acd4);
   --main-bg-color: rgb(42, 104, 219, 0.308);
+  --accent-bg: #a1b6e2;
 }
 
 body, html {
