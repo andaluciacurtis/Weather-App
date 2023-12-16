@@ -5,15 +5,21 @@
 }
 
 
-:root {
+:root:has(#sunny:checked) {
   --bg-gradient: linear-gradient(215deg, rgb(250, 255, 182),  #90f9d9, #8AECFE);
   --main-bg-color: rgb(42, 104, 219, 0.308);
   --accent-bg: #bbfdff7c;
 }
 
+:root:has(#rainy:checked) {
+  --bg-gradient: linear-gradient(45deg, blue, purple);
+  --main-bg-color: rgb(42, 104, 219, 0.308);
+}
+
 body, html {
   height: 100%;
-  font-family: 'Barlow Semi Condensed', sans-serif;
+ 
+  font-family: 'Oswald', sans-serif;
 }
 
 /* TEXT */
@@ -108,7 +114,7 @@ main path {
   display: flex;
   position: absolute;
 
-  margin-top: -125px;
+  margin-top: -130px;
   margin-left: -20px;
 
   justify-content: center;

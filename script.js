@@ -56,6 +56,8 @@ cityInput.addEventListener("keydown", (e) => {
   }
 })
 
+
+
 async function getCoordinates() {
   const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`);
   const data = await response.json();
@@ -103,6 +105,12 @@ async function getWeather() {
     `
     hourlyForecastContainer.appendChild(hourDiv);
   }
-
-  
 }
+
+document.getElementById('rainy').addEventListener('click', ()=> {
+  curWeatherImg.src = "Images/1x/rain.png";
+})
+
+document.getElementById('sunny').addEventListener('click', ()=>{
+  curWeatherImg.src= "Images/1x/sun.png";
+})
