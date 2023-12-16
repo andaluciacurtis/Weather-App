@@ -76,6 +76,8 @@ async function getWeather() {
   unitContainer.innerHTML = `°${unitShorthand}`;
   weatherDesc.innerHTML = `${mainWeather}`;
 
+  // Set the color scheme and weather images
+
   // Creating the hourly forecast
   let hourlyForecast = data["hourly"];
 
@@ -89,7 +91,6 @@ async function getWeather() {
     console.log(hourlyForecast[i]);
     
     let hourDiv = document.createElement("div");
-    let hourWeather = hourlyForecast[i]["weather"][0]["main"];
     let hourTemp = hourlyForecast[i]["temp"];
     let icon = hourlyForecast[i]["weather"][0]["icon"];
 

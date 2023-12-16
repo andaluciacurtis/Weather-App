@@ -65,24 +65,17 @@ button {
 }
 
 main {
-  background-color: var(--main-bg-color);
-
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-  margin-top: 120px;
-  border-radius: 0 0 15px 15px;
-
   width: min(500px, 90%);
 }
 
-main svg {
-  position: absolute;
-  margin-left: -20px;
-  margin-top: -131px;
-  z-index: 1;
-  width: min(500px, 90%);
+.weather-report-container {
+  background-color: var(--main-bg-color);
+  
+  gap: 20px;
+  padding: 20px;
+  border-radius: 0 0 15px 15px;
 }
 
 main path {
@@ -93,8 +86,6 @@ main path {
   display: flex;
   justify-content: space-around;
   align-items: top;
-
-  width: min(500px, 90%);
 }
 
 .top-row h2 {
@@ -104,14 +95,15 @@ main path {
 .current-weather {
   display: flex;
   position: absolute;
-  margin-top: -140px;
+
+  margin-top: -120px;
 
   justify-content: center;
-  gap: 80px;
-
-  z-index: 100;
-  width: min(500px, 90%);
   text-align: center;
+  
+  gap: 80px;
+  
+  width: min(500px, 90%);
 }
 
 .temp-container {
@@ -124,7 +116,6 @@ main path {
   gap: 40px;
   padding: 15px 30px;
   border-radius: 15px;
-
   margin-top: 30px;
   
   overflow-x: auto;
