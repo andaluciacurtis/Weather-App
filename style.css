@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed&family=Oswald:wght@400&display=swap');
 
 * {
   box-sizing: border-box;
@@ -19,19 +19,31 @@ body, html {
 /* TEXT */
 
 h1 {
-  font-size: 50px;
-  color: rgba(58, 58, 122, 0.26);
+  font-size: 70px;
+  color: var(--main-bg-color);
   margin-bottom: 20px;
+  font-family: 'Oswald', sans-serif;
+
 }
 
 h2 {
   font-size: 120px;
   color: white;
+
+  text-shadow: var(--main-bg-color) 0 0 10px;
 }
 
 h3 {
   font-size: 20px;
   color: white;
+}
+
+h4 {
+  font-size: 25px;
+  color: white;
+  text-shadow: var(--main-bg-color) 0 0 10px;
+  
+  font-family: 'Oswald', sans-serif;
 }
 
 p {
@@ -96,12 +108,13 @@ main path {
   display: flex;
   position: absolute;
 
-  margin-top: -120px;
+  margin-top: -125px;
+  margin-left: -20px;
 
   justify-content: center;
   text-align: center;
   
-  gap: 80px;
+  gap: 40px;
   
   width: min(500px, 90%);
 }
