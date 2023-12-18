@@ -18,9 +18,9 @@
 }
 
 :root:has(#partcloudy:checked) {
-  --bg-gradient: linear-gradient(215deg, #c5d2dd, #87a7d8);
-  --main-bg-color: rgba(75, 102, 255, 0.308);
-  --accent-bg: #a1b6e2;
+  --bg-gradient: linear-gradient(215deg, #90f5f9, #c5d2dd, #87a7d8);
+  --main-bg-color: rgba(109, 146, 216, 0.308);
+  --accent-bg: #bbfdff7c;
 }
 
 :root:has(#cloudy:checked) {
