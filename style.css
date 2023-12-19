@@ -92,7 +92,6 @@ input {
   padding: 5px;
   border-radius: 15px;
   width: 90%;
-  margin-bottom: 10px;
 }
 
 button {
@@ -133,6 +132,29 @@ main {
 
 main path {
   fill: var(--main-bg-color);
+}
+
+.city-suggestions {
+  width: min(430px, 76%);
+  margin-left: 13px;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: absolute;
+  padding-bottom: 10px;
+
+  z-index: 999;
+
+  border-radius: 0 0 15px 15px;
+  background-color: white;
+}
+
+.city-suggestions p {
+  color: black;
+  padding: 5px;
+}
+
+.city-suggestions p:hover {
+  background-color: var(--accent-bg);
 }
 
 .top-row {
