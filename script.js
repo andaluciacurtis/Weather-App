@@ -6,6 +6,8 @@
 // - current weather
 // - weather in an hour, two, three, etc, up to 10
 
+const citySuggestions = document.querySelector('.city-suggestions');
+
 const temperature = document.querySelector('.temperature');
 const weatherDesc = document.querySelector('.weather-desc');
 
@@ -16,8 +18,6 @@ const unitContainer = document.querySelector('.units');
 
 const metricButton = document.querySelector('.metric');
 const imperialButton = document.querySelector('.imperial');
-
-const cloudyImg = `Images/temp-cloud.png`
 
 
 let units = "imperial";
@@ -49,6 +49,11 @@ imperialButton.addEventListener("click", ()=>{
 
 
 var cityInput = document.querySelector(".city-input");
+
+cityInput.oninput = ()=> {
+  findCities(cityInput.value);
+}
+
 cityInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     city = cityInput.value;
@@ -56,9 +61,19 @@ cityInput.addEventListener("keydown", (e) => {
   }
 })
 
+async function findCities(input) {
+  const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=5&appid=${apiKey}`);
+  const data = await response.json();
 
+  citySuggestions.innerHTML = '';
+  for (let i = 0; i < data.length; i++) {
+    let currentCity = data[i];
+    citySuggestions.innerHTML += `<p>${currentCity.name}, ${currentCity.state}, ${currentCity.country}</p>`;
+  }
+}
 
 async function getCoordinates() {
+  
   const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`);
   const data = await response.json();
   
