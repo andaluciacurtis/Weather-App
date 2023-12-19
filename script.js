@@ -47,28 +47,53 @@ imperialButton.addEventListener("click", ()=>{
   getWeather();
 });
 
-
 var cityInput = document.querySelector(".city-input");
 
 cityInput.oninput = ()=> {
-  findCities(cityInput.value);
-}
+  debounce(()=> {
+    findCities(cityInput.value)
+  }, 500);
+};
 
 cityInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     city = cityInput.value;
     getWeather();
   }
-})
+});
+
+let timeout;
+let debounce = function(func, delay) {
+  clearTimeout(timeout);
+  timeout = setTimeout(func, delay);
+}
 
 async function findCities(input) {
-  const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=5&appid=${apiKey}`);
-  const data = await response.json();
+  let url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?types=City&namePrefix=${input}&limit=5`;
+  let options = {
+    method: 'GET',
+    headers: {
+       'X-RapidAPI-Key': xrapidAPIkey,
+       'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com',
+    }
+  }
+  const response = await fetch(url, options);
+  const cityData = await response.json();
 
   citySuggestions.innerHTML = '';
-  for (let i = 0; i < data.length; i++) {
-    let currentCity = data[i];
-    citySuggestions.innerHTML += `<p>${currentCity.name}, ${currentCity.state}, ${currentCity.country}</p>`;
+  
+  for (let i = 0; i < cityData.data.length; i++) {
+    let currentCity = cityData.data[i];
+
+    currentCityContainer = document.createElement('p');
+    currentCityContainer.textContent = `${currentCity.name}, ${currentCity.countryCode}`;
+
+    citySuggestions.appendChild(currentCityContainer);
+
+    currentCityContainer.addEventListener("click", ()=> {
+      citySuggestions.innerHTML = '';
+      console.log(currentCity.name);
+    })
   }
 }
 
