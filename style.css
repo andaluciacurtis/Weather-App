@@ -89,9 +89,11 @@ p {
 
 input {
   border: none;
-  padding: 5px;
+  padding: 10px;
   border-radius: 15px;
   width: 90%;
+
+  font-family: 'Oswald', sans-serif;
 }
 
 button {
@@ -136,7 +138,7 @@ main path {
 
 .city-suggestions {
   width: min(430px, 76%);
-  margin-left: 13px;
+  margin-left: 15px;
   padding-left: 10px;
   padding-right: 10px;
   position: absolute;
