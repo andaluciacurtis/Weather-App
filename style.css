@@ -136,8 +136,18 @@ main path {
   fill: var(--main-bg-color);
 }
 
+.top-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: top;
+}
+
+.top-row h2 {
+  padding-top: 10px;
+}
+
 .city-suggestions {
-  width: min(430px, 76%);
+  width: min(426px, 76%);
   margin-left: 15px;
   padding-left: 10px;
   padding-right: 10px;
@@ -153,20 +163,11 @@ main path {
 .city-suggestions p {
   color: black;
   padding: 5px;
+  cursor: pointer;
 }
 
 .city-suggestions p:hover {
   background-color: var(--accent-bg);
-}
-
-.top-row {
-  display: flex;
-  justify-content: space-around;
-  align-items: top;
-}
-
-.top-row h2 {
-  padding-top: 10px;
 }
 
 .current-weather {
