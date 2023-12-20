@@ -19,10 +19,10 @@ const unitContainer = document.querySelector('.units');
 const metricButton = document.querySelector('.metric');
 const imperialButton = document.querySelector('.imperial');
 
-
 let units = "imperial";
 let unitShorthand = "F";
 let city = "";
+let coords = [];
 
 var today = new Date();
 var currentHour = today.getHours();
@@ -52,12 +52,13 @@ var cityInput = document.querySelector(".city-input");
 cityInput.oninput = ()=> {
   debounce(()=> {
     findCities(cityInput.value)
-  }, 500);
+  }, 1000);
 };
 
 cityInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     city = cityInput.value;
+    coords = getCoordinates();
     getWeather();
   }
 });
@@ -68,15 +69,16 @@ let debounce = function(func, delay) {
   timeout = setTimeout(func, delay);
 }
 
+const options = {
+  method: 'GET',
+  headers: {
+     'X-RapidAPI-Key': xrapidAPIkey,
+     'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com',
+  }
+}
+
 async function findCities(input) {
   let url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?types=City&namePrefix=${input}&limit=5`;
-  let options = {
-    method: 'GET',
-    headers: {
-       'X-RapidAPI-Key': xrapidAPIkey,
-       'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com',
-    }
-  }
   const response = await fetch(url, options);
   const cityData = await response.json();
 
@@ -92,13 +94,15 @@ async function findCities(input) {
 
     currentCityContainer.addEventListener("click", ()=> {
       citySuggestions.innerHTML = '';
-      console.log(currentCity.name);
+      city = currentCity;
+      coords = [currentCity.latitude, currentCity.longitude];
+      
+      getWeather();
     })
   }
 }
 
 async function getCoordinates() {
-  
   const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`);
   const data = await response.json();
   
@@ -106,19 +110,22 @@ async function getCoordinates() {
 }
 
 async function getWeather() {
-  const coords = await getCoordinates();
-  
   const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${coords[0]}&lon=${coords[1]}&exclude=minutely,daily&appid=${apiKey}&units=${units}`);
   const data = await response.json();
 
   // Main weather info
-  let mainWeather = data["current"]["weather"][0]["description"];
+  let mainWeather = data["current"]["weather"][0]["main"];
   
   temperature.innerHTML = `${Math.round(data["current"]["temp"])}`;
   unitContainer.innerHTML = `°${unitShorthand}`;
   weatherDesc.innerHTML = `${mainWeather}`;
 
   // Set the color scheme and weather images
+  if (mainWeather === "Clear") {
+    curWeatherImg.src= "Images/1x/sun.png";
+  } else if (mainWeather == "Clouds") {
+    curWeatherImg.src= "Images/1x/cloud.png";
+  }
 
   // Creating the hourly forecast
   let hourlyForecast = data["hourly"];

@@ -149,10 +149,7 @@ main path {
 .city-suggestions {
   width: min(426px, 76%);
   margin-left: 15px;
-  padding-left: 10px;
-  padding-right: 10px;
   position: absolute;
-  padding-bottom: 10px;
 
   z-index: 999;
 
