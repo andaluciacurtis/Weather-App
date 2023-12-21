@@ -14,19 +14,19 @@
 :root:has(#rainy:checked) {
   --bg-gradient: linear-gradient(215deg, #c5d2dd, #6c8ec0);
   --main-bg-color: rgba(76, 83, 122, 0.308);
-  --accent-bg: #94aad1;
+  --accent-bg: #7882a1bb;
 }
 
 :root:has(#partcloudy:checked) {
   --bg-gradient: linear-gradient(215deg, #90f5f9, #b5d8e7, #c5d2dd, #aac0e0, #87a7d8);
   --main-bg-color: rgba(109, 146, 216, 0.308);
-  --accent-bg: #bbfdff7c;
+  --accent-bg: rgba(189, 208, 236, 0.486);
 }
 
 :root:has(#cloudy:checked) {
-  --bg-gradient: linear-gradient(215deg, #c5d2dd, #87a7d8);
-  --main-bg-color: rgba(75, 102, 255, 0.308);
-  --accent-bg: #a1b6e2;
+  --bg-gradient: linear-gradient(215deg, #c5d2dd, #aac0e0, #adb8c5);
+  --main-bg-color: rgba(93, 116, 160, 0.308);
+  --accent-bg: #7995b97c;
 }
 
 :root:has(#windy:checked) {
@@ -134,6 +134,11 @@ main {
 
 main path {
   fill: var(--main-bg-color);
+}
+
+main svg {
+  padding-top: 15px;
+  margin: -1px 0 -1px 0;
 }
 
 .top-row {
