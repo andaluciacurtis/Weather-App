@@ -84,11 +84,6 @@ h3 {
 }
 
 h4 {
-  font-size: 25px;
-  color: white;
-  text-shadow: var(--main-bg-color) 0 0 10px;
-  
-  font-family: 'Oswald', sans-serif;
 }
 
 p {
@@ -255,6 +250,17 @@ main svg {
 .selected {
   font-style: bold;
   color: black;
+  
+  font-size: 25px;
+  color: white;
+  text-shadow: var(--main-bg-color) 0 0 10px;
+  
+  font-family: 'Oswald', sans-serif;
+}
+
+.units {
+  font-size: 13px;
+  cursor: pointer;
 }
 
 @keyframes bg-animation {

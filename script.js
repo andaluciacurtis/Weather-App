@@ -17,8 +17,7 @@ const curWeatherImg = document.querySelector('.current-weather-img')
 const hourlyForecastContainer = document.querySelector('.hourly-forecast-container');
 const unitContainer = document.querySelector('.units');
 
-const metricButton = document.querySelector('.metric');
-const imperialButton = document.querySelector('.imperial');
+
 
 let units = "imperial";
 let unitShorthand = "F";
@@ -28,25 +27,7 @@ let coords = [];
 var today = new Date();
 var currentHour = today.getHours();
 
-metricButton.addEventListener("click", ()=>{
-  units = "metric";
-  unitShorthand = "C";
 
-  imperialButton.classList.remove("selected");
-  metricButton.classList.add("selected");
-  
-  getWeather();
-});
-
-imperialButton.addEventListener("click", ()=>{
-  units = "imperial";
-  unitShorthand = "F";
-
-  metricButton.classList.remove("selected");
-  imperialButton.classList.add("selected");
-  
-  getWeather();
-});
 
 var cityInput = document.querySelector(".city-input");
 
@@ -119,8 +100,26 @@ async function getWeather() {
   let mainWeather = data["current"]["weather"][0]["main"];
   
   temperature.innerHTML = `${Math.round(data["current"]["temp"])}`;
-  unitContainer.innerHTML = `°${unitShorthand}`;
   weatherDesc.innerHTML = `${mainWeather}`;
+
+  if (units==="metric") {
+    unitContainer.innerHTML = `<span class="metric selected">°C</span> / <span class="imperial">F</span>`;
+  } else {
+    unitContainer.innerHTML = `<span class="imperial selected">°F</span> / <span class="metric">C</span>`;
+  }
+
+  let metricButton = document.querySelector('.metric');
+  let imperialButton = document.querySelector('.imperial');
+
+  metricButton.addEventListener("click", ()=>{
+    units = "metric";
+    getWeather();
+  });
+  
+  imperialButton.addEventListener("click", ()=>{
+    units = "imperial";
+    getWeather();
+  });
 
   // Set the color scheme and weather images
   if (mainWeather === "Clear") {
@@ -137,7 +136,12 @@ async function getWeather() {
   }
 
   for (let i = 0; i < 10; i++) {
-    let hour = currentHour + i;
+    let hour;
+    if (i === 0) {
+      hour = "Now";
+    } else {
+      hour = `${currentHour + i}:00`;
+    }
 
     console.log(hourlyForecast[i]);
     
@@ -148,7 +152,7 @@ async function getWeather() {
     hourDiv.classList.add("hour-div");
 
     hourDiv.innerHTML = `
-      <h3>${hour}:00</h3>
+      <h3>${hour}</h3>
       <img src="http://openweathermap.org/img/wn/${icon}.png" id="icon">
       <p>${Math.round(hourTemp)}°${unitShorthand}</p>
     `
