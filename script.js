@@ -10,6 +10,7 @@ const citySuggestions = document.querySelector('.city-suggestions');
 
 const temperature = document.querySelector('.temperature');
 const weatherDesc = document.querySelector('.weather-desc');
+const cityHeader = document.querySelector('.city-header');
 
 const curWeatherImg = document.querySelector('.current-weather-img')
 
@@ -96,6 +97,7 @@ async function findCities(input) {
       citySuggestions.innerHTML = '';
       city = currentCity;
       coords = [currentCity.latitude, currentCity.longitude];
+      cityHeader.textContent = `${currentCity.name}, ${currentCity.countryCode}`;
       
       getWeather();
     })

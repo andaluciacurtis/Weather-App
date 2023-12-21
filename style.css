@@ -9,42 +9,50 @@
   --bg-gradient: linear-gradient(215deg, rgb(250, 255, 182),  #90f5f9, #8ac0fe);
   --main-bg-color: rgba(109, 146, 216, 0.308);
   --accent-bg: #bbfdff7c;
+  --bright-accent: rgb(246, 255, 162);
+  --title-color: rgba(109, 146, 216, 0.308);
 }
 
 :root:has(#rainy:checked) {
   --bg-gradient: linear-gradient(215deg, #c5d2dd, #6c8ec0);
   --main-bg-color: rgba(76, 83, 122, 0.308);
-  --accent-bg: #7882a1bb;
+  --accent-bg: #6d7ca871;
+  --title-color: rgba(76, 83, 122, 0.308);
 }
 
 :root:has(#partcloudy:checked) {
   --bg-gradient: linear-gradient(215deg, #90f5f9, #b5d8e7, #c5d2dd, #aac0e0, #87a7d8);
   --main-bg-color: rgba(109, 146, 216, 0.308);
   --accent-bg: rgba(189, 208, 236, 0.486);
+  --title-color: rgba(109, 146, 216, 0.308);
 }
 
 :root:has(#cloudy:checked) {
   --bg-gradient: linear-gradient(215deg, #c5d2dd, #aac0e0, #adb8c5);
   --main-bg-color: rgba(93, 116, 160, 0.308);
   --accent-bg: #7995b97c;
+  --title-color: rgba(93, 116, 160, 0.308);
 }
 
 :root:has(#windy:checked) {
   --bg-gradient: linear-gradient(215deg, #c5d2dd, #87a7d8);
   --main-bg-color: rgba(75, 102, 255, 0.308);
   --accent-bg: #a1b6e2;
+  --title-color: rgba(75, 102, 255, 0.308);
 }
 
 :root:has(#snowy:checked) {
   --bg-gradient: linear-gradient(215deg, #ffffff, #dcf8ff, #cfdcff);
   --main-bg-color: rgba(131, 182, 223, 0.308);
   --accent-bg: #9dbbd6;
+  --title-color: rgba(131, 182, 223, 0.308);
 }
 
 :root:has(#stormy:checked) {
   --bg-gradient: linear-gradient(215deg, #96a6d3, #565e8a);
   --main-bg-color: rgba(189, 187, 255, 0.308);
   --accent-bg: #6f7da5;
+  --title-color: rgba(189, 187, 255, 0.308);
 }
 
 body, html {
@@ -57,7 +65,7 @@ body, html {
 
 h1 {
   font-size: 70px;
-  color: var(--main-bg-color);
+  color: var(--title-color);
   margin-bottom: 20px;
   font-family: 'Oswald', sans-serif;
 
@@ -132,12 +140,17 @@ main {
   border-radius: 0 0 15px 15px;
 }
 
+.city-header {
+  font-size: 25px;
+  color: var(--bright-accent);
+}
+
 main path {
   fill: var(--main-bg-color);
 }
 
 main svg {
-  padding-top: 15px;
+  padding-top: 40px;
   margin: -1px 0 -1px 0;
 }
 
@@ -181,6 +194,7 @@ main svg {
 
   justify-content: center;
   text-align: center;
+  align-items: center;
 
   gap: 20px;
   
@@ -190,6 +204,7 @@ main svg {
 .temp-container {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .hourly-forecast-container {
@@ -197,7 +212,7 @@ main svg {
   gap: 40px;
   padding: 15px 30px;
   border-radius: 15px;
-  margin-top: 30px;
+  margin-top: 50px;
   
   overflow-x: auto;
   
