@@ -1,58 +1,55 @@
-// Allow the user to search for a city and list cities that come up for them to choose from
-// Once a city is chosen, send the coordinates to the weather API and display
-// Also display the name along with the weather
-
-// Weather necessities:
-// - current weather
-// - weather in an hour, two, three, etc, up to 10
+const innerContainer = document.querySelector('.inner-container');
 
 const citySuggestions = document.querySelector('.city-suggestions');
+const cityInput = document.querySelector("#city-input");
+const searchButton = document.querySelector('.search-button');
 
-const temperature = document.querySelector('.temperature');
-const weatherDesc = document.querySelector('.weather-desc');
 const cityHeader = document.querySelector('.city-header');
-
+const temperature = document.querySelector('.temperature');
+const unitContainer = document.querySelector('.units');
+const weatherDesc = document.querySelector('.weather-desc');
 const weatherImg = document.querySelector('.current-weather-img')
 
 const hourlyForecastContainer = document.querySelector('.hourly-forecast-container');
-const unitContainer = document.querySelector('.units');
-
-const innerContainer = document.querySelector('.inner-container');
-
-
 
 let units = "imperial";
 let unitShorthand = "F";
 
 let coords = [];
 
-var cityInput = document.querySelector("#city-input");
-
-
-// On opening webpage, choose random theme
-var themes = ["sunny", "partcloudy", "cloudy", "rainy", "stormy", "snowy", "windy"];
+// ------- UPON OPENING WEBPAGE -------
+// Choose random background theme
+let themes = ["sunny", "partcloudy", "cloudy", "rainy", "stormy", "snowy", "windy"];
 document.documentElement.className = `theme-${themes[Math.round(Math.random() * 6)]}`;
 
 searchString = "";
-
 cityInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     searchString = "";
     city = cityInput.value;
     
-    //cancel find cities search
     citySuggestions.innerHTML = '';
     cityInput.value = '';
-
     clearTimeout(timeout);
 
-    getWeatherByCoordinates();
+    getCity(city);
   } else  {
     debounce(()=> {
       findCities(cityInput.value)
     }, 1000);
   }
 });
+
+searchButton.addEventListener("click", ()=> {
+  searchString = "";
+  city = cityInput.value;
+  
+  citySuggestions.innerHTML = '';
+  cityInput.value = '';
+  clearTimeout(timeout);
+
+  getCity(city);
+})
 
 
 let timeout;
@@ -69,8 +66,30 @@ const options = {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 async function findCities(input) {
-  let url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?types=City&namePrefix=${input}&limit=5`;
+  let url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?types=City&namePrefix=${input}&limit=5&sort=-population`;
   const response = await fetch(url, options);
   const cityData = await response.json();
 
@@ -80,7 +99,7 @@ async function findCities(input) {
     let currentCity = cityData.data[i];
 
     currentCityContainer = document.createElement('p');
-    currentCityContainer.textContent = `${currentCity.name}, ${currentCity.countryCode}`;
+    currentCityContainer.textContent = `${currentCity.name}, ${currentCity.regionCode}, ${currentCity.countryCode}`;
 
     citySuggestions.appendChild(currentCityContainer);
 
@@ -97,10 +116,15 @@ async function findCities(input) {
   }
 }
 
-async function getWeatherByCoordinates() {
-  const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`);
-  const data = await response.json();
-  coords = [data[0].lat, data[0].lon];
+async function getCity(input) {
+  let url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?types=City&namePrefix=${input}&limit=1&sort=-population`;
+  const response = await fetch(url, options);
+  const cityData = await response.json();
+
+  currentCity = cityData.data[0];
+  
+  coords = [currentCity.latitude, currentCity.longitude];
+  cityHeader.textContent = `${currentCity.name}, ${currentCity.countryCode}`;
 
   getWeather();
 }
