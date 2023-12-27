@@ -7,10 +7,15 @@
 
 :root:has(#sunny:checked) {
   --bg-gradient: linear-gradient(215deg, rgb(250, 255, 182),  #90f5f9, #8ac0fe);
+
   --main-bg-color: rgba(109, 146, 216, 0.308);
   --accent-bg: #bbfdff7c;
-  --bright-accent: rgb(246, 255, 162);
+
   --title-color: rgba(109, 146, 216, 0.308);
+  --text-color: white;
+  --secondary-text-color: rgba(109, 146, 216, 0.664);
+
+  --bright-accent: rgb(246, 255, 162);
 }
 
 :root:has(#rainy:checked) {
@@ -151,6 +156,7 @@ main {
 .city-header {
   font-size: 25px;
   color: var(--bright-accent);
+  text-shadow: var(--main-bg-color) 0 0 5px;
 }
 
 main path {
@@ -177,7 +183,7 @@ main svg {
   background-color: var(--bright-accent);
   padding: 10px;
   border-radius: 50px;
-  color: var(--main-bg-color);
+  color: var(--secondary-text-color);
   cursor: pointer;
 }
 
@@ -240,33 +246,8 @@ main svg {
   text-align: center;
 }
 
-.dressing-advice {
-  display: flex;
-  gap: 20px;
-}
-
-.advice-container {
-  display: flex;
-  flex-direction: column;
-
-  justify-content: center;
-  align-items: center;
-  width: 40%;
-  gap: 30px;
-}
-
-.advice-container p {
-  padding: 20px;
-  color: black;
-}
-
-.dressing-image {
-  width: 60%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--accent-bg);
-  border-radius: 100% 0 0 0;
+.hour-div p {
+  color: var(--secondary-text-color);
 }
 
 .selected {
@@ -283,6 +264,8 @@ main svg {
 .units {
   font-size: 13px;
   cursor: pointer;
+  
+  color: var(--secondary-text-color);
 }
 
 @keyframes bg-animation {
