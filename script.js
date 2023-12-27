@@ -181,42 +181,26 @@ function setUnits() {
 
 // Takes in the main description and decides on theme based on it
 function setTheme(mainDesc) {
-  weatherImg.src = "Images/1x/sun.png";
-
   if (mainDesc === "clear sky") {
     weatherImg.src= "Images/1x/sun.png";
-
     document.documentElement.className = 'theme-sunny';
-
-
   } else if (mainDesc === "few clouds" || mainDesc === "scattered clouds" || mainDesc === "haze") {
     weatherImg.src= "Images/1x/partcloud.png";
-     
     document.documentElement.className = 'theme-partcloudy';
-
   } else if (mainDesc === "broken clouds" || mainDesc === "overcast clouds") {
      weatherImg.src = "Images/1x/cloud.png";
-
      document.documentElement.className = 'theme-cloudy';
-
    } else if (mainDesc.includes("rain")) {
      weatherImg.src = "Images/1x/rain.png";
-
      document.documentElement.className = 'theme-rainy';
-
    } else if (mainDesc === "thunderstorm") {
-
      weatherImg.src = "Images/1x/storm.png";
-
      document.documentElement.className = 'theme-stormy';
-
    } else if (mainDesc.includes("snow")) {
      weatherImg.src = "Images/1x/snow.png";
-
      document.documentElement.className = 'theme-snowy';
    } else {
     weatherImg.src = "Images/1x/wind.png";
-
     document.documentElement.className = 'theme-windy';
    }
 }

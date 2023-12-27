@@ -90,7 +90,6 @@ main {
 .weather-report-container {
   background-color: var(--main-bg-color);
   
-  gap: 20px;
   padding: 20px;
   border-radius: 0 0 15px 15px;
 }
@@ -106,7 +105,8 @@ main path {
 
 main svg {
   padding-top: 40px;
-  margin: -1px 0 -1px 0;
+  display: block;
+  margin: 0 0 -1px 0;
 }
 
 .search-box {

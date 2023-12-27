@@ -2,7 +2,7 @@
 .theme-sunny {
   --bg-gradient: linear-gradient(215deg, rgb(250, 255, 182),  #90f5f9, #8ac0fe);
 
-  --main-bg-color: rgba(109, 146, 216, 0.308);
+  --main-bg-color: #8ed7e9;
   --accent-bg: #bbfdff7c;
 
   --title-color: rgba(109, 146, 216, 0.308);
@@ -19,7 +19,7 @@
 .theme-partcloudy {
   --bg-gradient: linear-gradient(215deg, #90f5f9, #b5d8e7, #cee2f3, #aac0e0, #87a7d8);
 
-  --main-bg-color: rgba(109, 146, 216, 0.308);
+  --main-bg-color: #a3c3e5;
   --accent-bg: rgba(226, 237, 255, 0.158);
 
   --title-color: rgba(109, 146, 216, 0.308);
@@ -36,7 +36,7 @@
 .theme-cloudy {
   --bg-gradient: linear-gradient(215deg, #c5d2dd, #aac0e0, #adb8c5);
 
-  --main-bg-color: rgba(96, 118, 160, 0.308);
+  --main-bg-color: #98adcd;
   --accent-bg: #abc1df7c;
   
   --title-color: rgba(93, 116, 160, 0.308);
@@ -53,7 +53,7 @@
 .theme-rainy {
   --bg-gradient: linear-gradient(215deg, #c5d2dd, #6c8ec0);
 
-  --main-bg-color: rgba(63, 78, 110, 0.308);
+  --main-bg-color: #89a0c0;
   --accent-bg: #9dc5fa31;
   
   --title-color: rgba(76, 83, 122, 0.308);
@@ -70,7 +70,7 @@
 .theme-snowy {
   --bg-gradient: linear-gradient(215deg, #ffffff, #dcf8ff, #cfdcff);
 
-  --main-bg-color: rgba(133, 169, 199, 0.308);
+  --main-bg-color: #c0deee;
   --accent-bg: rgba(133, 169, 199, 0.205);
 
   --title-color: rgba(133, 169, 199, 0.507);
@@ -87,7 +87,7 @@
 .theme-stormy {
   --bg-gradient: linear-gradient(215deg, #96a6d3, #565e8a);
 
-  --main-bg-color: rgba(189, 187, 255, 0.308);
+  --main-bg-color: #949dd1;
   --accent-bg: #515b8646;
   
   --title-color: #bdb2ff60;
@@ -104,7 +104,7 @@
 .theme-windy {
   --bg-gradient: linear-gradient(215deg, #c7eeff, #b8d4ff, rgb(231, 243, 255));
 
-  --main-bg-color: rgba(120, 148, 201, 0.308);
+  --main-bg-color: #a7c5ee;
   --accent-bg: #8199bb3f;
   
   --title-color: rgba(120, 148, 201, 0.308);
