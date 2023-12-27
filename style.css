@@ -26,12 +26,12 @@
   --bg-gradient: linear-gradient(215deg, #90f5f9, #b5d8e7, #cee2f3, #aac0e0, #87a7d8);
 
   --main-bg-color: rgba(109, 146, 216, 0.308);
-  --accent-bg: rgba(189, 208, 236, 0.486);
+  --accent-bg: rgba(226, 237, 255, 0.158);
 
   --title-color: rgba(109, 146, 216, 0.308);
   --text-color: white;
   --secondary-text-color: rgba(109, 146, 216, 0.664);
-  --city-text-color: rgb(193, 251, 255);
+  --city-text-color: rgba(249, 255, 192, 0.89);
 
   --text-shadow-color: rgba(109, 146, 216, 0.308);
 
@@ -77,17 +77,17 @@
   --bg-gradient: linear-gradient(215deg, #ffffff, #dcf8ff, #cfdcff);
 
   --main-bg-color: rgba(133, 169, 199, 0.308);
-  --accent-bg: #578acc1c;
+  --accent-bg: rgba(133, 169, 199, 0.205);
 
-  --title-color: rgba(131, 182, 223, 0.308);
+  --title-color: rgba(133, 169, 199, 0.507);
   --text-color: white;
   --secondary-text-color: rgb(255, 245, 180);
-  --city-text-color: rgba(162, 192, 216, 0.774);
+  --city-text-color:  rgba(133, 169, 199, 0.507);
 
   --text-shadow-color: rgba(123, 171, 211, 0.61);
   
   --scrollbar-color: rgb(203, 255, 248);
-  --search-color: rgba(112, 161, 201, 0.425);
+  --search-color: rgba(133, 169, 199, 0.507);
 }
 
 :root:has(#stormy:checked) {
