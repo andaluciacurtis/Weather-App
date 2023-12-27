@@ -23,7 +23,7 @@
 }
 
 :root:has(#partcloudy:checked) {
-  --bg-gradient: linear-gradient(215deg, #90f5f9, #b5d8e7, #c5d2dd, #aac0e0, #87a7d8);
+  --bg-gradient: linear-gradient(215deg, #90f5f9, #b5d8e7, #cee2f3, #aac0e0, #87a7d8);
 
   --main-bg-color: rgba(109, 146, 216, 0.308);
   --accent-bg: rgba(189, 208, 236, 0.486);
@@ -108,19 +108,20 @@
 }
 
 :root:has(#windy:checked) {
-  --bg-gradient: linear-gradient(215deg, #c5d2dd, #aac0e0, #adb8c5);
+  --bg-gradient: linear-gradient(215deg, #c7eeff, #b8d4ff, rgb(231, 243, 255));
 
-  --main-bg-color: rgba(96, 118, 160, 0.308);
-  --accent-bg: #abc1df7c;
+  --main-bg-color: rgba(120, 148, 201, 0.308);
+  --accent-bg: #8199bb3f;
   
-  --title-color: rgba(93, 116, 160, 0.308);
+  --title-color: rgba(120, 148, 201, 0.308);
   --text-color: white;
-  --secondary-text-color: rgba(91, 100, 139, 0.664);
-  --city-text-color: rgb(200, 220, 233);
+  --secondary-text-color: rgba(64, 90, 138, 0.308);
+  --city-text-color: rgba(64, 90, 138, 0.308);
 
-  --text-shadow-color: rgba(96, 118, 160, 0.308);
-
-  --bright-accent: rgb(200, 220, 233);
+  --text-shadow-color: rgba(120, 148, 201, 0.308);
+  
+  --scrollbar-color: rgba(230, 228, 255, 0.692);
+  --search-color: rgba(230, 228, 255, 0.692);
 }
 
 body, html {
