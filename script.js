@@ -26,17 +26,12 @@ let unitShorthand = "F";
 
 let coords = [];
 
-var today = new Date();
-var currentHour = today.getHours();
+var cityInput = document.querySelector("#city-input");
 
 
-var cityInput = document.querySelector(".city-input");
-
-// cityInput.oninput = ()=> {
-//   debounce(()=> {
-//      findCities(cityInput.value)
-//   }, 1000);
-// };
+// On opening webpage, choose random theme
+var themes = ["sunny", "partcloudy", "cloudy", "rainy", "stormy", "snowy", "windy"];
+document.documentElement.className = `theme-${themes[Math.round(Math.random() * 6)]}`;
 
 searchString = "";
 
@@ -49,16 +44,15 @@ cityInput.addEventListener("keydown", (e) => {
     citySuggestions.innerHTML = '';
     cityInput.value = '';
 
+    clearTimeout(timeout);
+
     getWeatherByCoordinates();
   } else  {
     debounce(()=> {
-      findCities(cityInput.value)}, 1000);
-    }
+      findCities(cityInput.value)
+    }, 1000);
+  }
 });
-
-// On opening webpage, choose random theme
-var themes = ["sunny", "partcloudy", "cloudy", "rainy", "stormy", "snowy", "windy"];
-document.documentElement.className = `theme-${themes[Math.round(Math.random() * 6)]}`;
 
 
 let timeout;
@@ -121,6 +115,7 @@ async function getWeather() {
   // Main weather info
   let mainWeather = data["current"]["weather"][0]["main"];
   let mainDesc = data["current"]["weather"][0]["description"];
+  let timeOffset = data["timezone_offset"];
   
   temperature.innerHTML = `${Math.round(data["current"]["temp"])}`;
   weatherDesc.innerHTML = `${mainWeather}`;
@@ -136,11 +131,13 @@ async function getWeather() {
 
   metricButton.addEventListener("click", ()=>{
     units = "metric";
+    unitShorthand = "C";
     getWeather();
   });
   
   imperialButton.addEventListener("click", ()=>{
     units = "imperial";
+    unitShothand = "F";
     getWeather();
   });
 
@@ -154,12 +151,14 @@ async function getWeather() {
   }
 
   for (let i = 0; i < 10; i++) {
-    let hour;
-    if (i === 0) {
-      hour = "Now";
-    } else {
-      hour = `${currentHour + i}:00`;
-    }
+    let time = new Date(((hourlyForecast[i]["dt"] + timeOffset) * 1000));
+    let hour = time.getHours();
+
+    
+
+    let amPm = hour >= 12 ? 'pm' : 'am';
+    hour = (time.getHours() % 12) || 12;
+
     
     let hourDiv = document.createElement("div");
     let hourTemp = hourlyForecast[i]["temp"];
@@ -168,7 +167,7 @@ async function getWeather() {
     hourDiv.classList.add("hour-div");
 
     hourDiv.innerHTML = `
-      <h3>${hour}</h3>
+      <h3>${hour}${amPm}</h3>
       <img src="http://openweathermap.org/img/wn/${icon}.png" id="icon">
       <p>${Math.round(hourTemp)}°${unitShorthand}</p>
     `
