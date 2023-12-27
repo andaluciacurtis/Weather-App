@@ -22,41 +22,33 @@ let coords = [];
 let themes = ["sunny", "partcloudy", "cloudy", "rainy", "stormy", "snowy", "windy"];
 document.documentElement.className = `theme-${themes[Math.round(Math.random() * 6)]}`;
 
+// Searching and finding cities
 searchString = "";
 cityInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
-    searchString = "";
-    city = cityInput.value;
-    
-    citySuggestions.innerHTML = '';
-    cityInput.value = '';
     clearTimeout(timeout);
+    getCityData(cityInput.value, 1);
 
-    getCity(city);
   } else  {
     debounce(()=> {
-      findCities(cityInput.value)
+      displaySearchResults(cityInput.value);
     }, 1000);
   }
 });
 
 searchButton.addEventListener("click", ()=> {
-  searchString = "";
-  city = cityInput.value;
-  
-  citySuggestions.innerHTML = '';
-  cityInput.value = '';
-  clearTimeout(timeout);
-
-  getCity(city);
+    clearTimeout(timeout);
+    chooseCity(cityInput.value);
 })
 
-
+// Used in order to stay within API call limit
 let timeout;
 let debounce = function(func, delay) {
   clearTimeout(timeout);
   timeout = setTimeout(func, delay);
 }
+
+// ------ ASYNC FUNCTIONS ------
 
 const options = {
   method: 'GET',
@@ -66,12 +58,52 @@ const options = {
   }
 }
 
+async function getCityData(input, limit) {
+  let url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?types=City&namePrefix=${input}&limit=${limit}&sort=-population`;
+  const response = await fetch(url, options);
+  const cityData = await response.json();
+
+  console.log(cityData);
+
+  return cityData;
+}
+
+async function displaySearchResults(citySearch) {
+  citySuggestions.innerHTML = '';
+  cityData = await getCityData(citySearch, 5);
+
+  // for each city found, display it in the search results and add a listener
+  for (let i = 0; i < cityData.data.length; i++) {
+    let currentCity = cityData.data[i];
+
+    currentCityContainer = document.createElement('p');
+    currentCityContainer.textContent = `${currentCity.name}, ${currentCity.regionCode}, ${currentCity.countryCode}`;
+
+    citySuggestions.appendChild(currentCityContainer);
+
+    currentCityContainer.addEventListener("click", ()=> {
+      chooseCity(currentCity);
+    })
+  }
+}
 
 
 
 
 
 
+
+// Resets search results and sets up city data
+function chooseCity (currentCity) {
+  searchString = "";
+  citySuggestions.innerHTML = '';
+  cityInput.value = '';
+
+  coords = [currentCity.latitude, currentCity.longitude];
+  cityHeader.textContent = `${currentCity.name}, ${currentCity.countryCode}`;
+
+  getWeather();
+}
 
 
 
@@ -114,19 +146,6 @@ async function findCities(input) {
       getWeather();
     })
   }
-}
-
-async function getCity(input) {
-  let url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?types=City&namePrefix=${input}&limit=1&sort=-population`;
-  const response = await fetch(url, options);
-  const cityData = await response.json();
-
-  currentCity = cityData.data[0];
-  
-  coords = [currentCity.latitude, currentCity.longitude];
-  cityHeader.textContent = `${currentCity.name}, ${currentCity.countryCode}`;
-
-  getWeather();
 }
 
 async function getWeather() {
