@@ -83,8 +83,8 @@ main {
   width: min(500px, 90%);
 }
 
-.theme-toggles {
-  display: flex;
+.inner-container {
+  display: none;
 }
 
 .weather-report-container {

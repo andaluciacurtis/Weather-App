@@ -17,6 +17,8 @@ const weatherImg = document.querySelector('.current-weather-img')
 const hourlyForecastContainer = document.querySelector('.hourly-forecast-container');
 const unitContainer = document.querySelector('.units');
 
+const innerContainer = document.querySelector('.inner-container');
+
 
 
 let units = "imperial";
@@ -26,8 +28,6 @@ let coords = [];
 
 var today = new Date();
 var currentHour = today.getHours();
-
-
 
 var cityInput = document.querySelector(".city-input");
 
@@ -44,6 +44,11 @@ cityInput.addEventListener("keydown", (e) => {
     getWeather();
   }
 });
+
+// On opening webpage, choose random theme
+var themes = ["sunny", "partcloudy", "cloudy", "rainy", "stormy", "snowy", "windy"];
+document.documentElement.className = `theme-${themes[Math.round(Math.random() * 6)]}`;
+
 
 let timeout;
 let debounce = function(func, delay) {
@@ -95,6 +100,7 @@ async function getCoordinates() {
 }
 
 async function getWeather() {
+  innerContainer.style.display = "block";
   const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${coords[0]}&lon=${coords[1]}&exclude=minutely,daily&appid=${apiKey}&units=${units}`);
   const data = await response.json();
 
@@ -167,17 +173,17 @@ function setTheme(mainDesc) {
     document.documentElement.className = 'theme-sunny';
 
 
-  } else if (mainDesc === "few clouds") {
+  } else if (mainDesc === "few clouds" || mainDesc === "scattered clouds" || mainDesc === "haze") {
     weatherImg.src= "Images/1x/partcloud.png";
      
     document.documentElement.className = 'theme-partcloudy';
 
-  } else if (mainDesc === "scattered clouds" || mainDesc === "broken clouds") {
+  } else if (mainDesc === "broken clouds" || mainDesc === "overcast clouds") {
      weatherImg.src = "Images/1x/cloud.png";
 
      document.documentElement.className = 'theme-cloudy';
 
-   } else if (mainDesc === "shower rain" || mainDesc === "rain") {
+   } else if (mainDesc.includes("rain")) {
      weatherImg.src = "Images/1x/rain.png";
 
      document.documentElement.className = 'theme-rainy';
@@ -188,9 +194,13 @@ function setTheme(mainDesc) {
 
      document.documentElement.className = 'theme-stormy';
 
-   } else if (mainDesc === "snow") {
+   } else if (mainDesc.includes("snow")) {
      weatherImg.src = "Images/1x/snow.png";
 
      document.documentElement.className = 'theme-snowy';
+   } else {
+    weatherImg.src = "Images/1x/wind.png";
+
+    document.documentElement.className = 'theme-windy';
    }
 }
