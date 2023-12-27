@@ -17,7 +17,7 @@
 }
 
 .theme-partcloudy {
-  --bg-gradient: linear-gradient(215deg, #90f5f9, #b5d8e7, #cee2f3, #aac0e0, #87a7d8);
+  --bg-gradient: linear-gradient(215deg, #90f5f9, #b5d8e7, #cee2f3, #b7cff3, #a4c6f8);
 
   --main-bg-color: #a3c3e5;
   --accent-bg: rgba(226, 237, 255, 0.158);
@@ -68,7 +68,7 @@
 }
 
 .theme-snowy {
-  --bg-gradient: linear-gradient(215deg, #ffffff, #dcf8ff, #cfdcff);
+  --bg-gradient: linear-gradient(215deg, #ffffff, #dcf8ff, #cff0ff);
 
   --main-bg-color: #c0deee;
   --accent-bg: rgba(133, 169, 199, 0.205);
