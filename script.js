@@ -110,12 +110,11 @@ async function getWeather() {
   const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${coords[0]}&lon=${coords[1]}&exclude=minutely,daily&appid=${apiKey}&units=${units}`);
   const data = await response.json();
 
-  console.log(data);
-
   // Main weather info
   let mainWeather = data["current"]["weather"][0]["main"];
   let mainDesc = data["current"]["weather"][0]["description"];
-  let timeOffset = data["timezone_offset"];
+  
+  let timezone = data["timezone"];
   
   temperature.innerHTML = `${Math.round(data["current"]["temp"])}`;
   weatherDesc.innerHTML = `${mainWeather}`;
@@ -151,10 +150,10 @@ async function getWeather() {
   }
 
   for (let i = 0; i < 10; i++) {
-    let time = new Date(((hourlyForecast[i]["dt"] + timeOffset) * 1000));
-    let hour = time.getHours();
+    let localTime = new Date((hourlyForecast[i]["dt"]) * 1000);
+    let time = new Date(localTime.toLocaleString('en-US', {timeZone: timezone}));
 
-    
+    hour = time.getHours();
 
     let amPm = hour >= 12 ? 'pm' : 'am';
     hour = (time.getHours() % 12) || 12;
