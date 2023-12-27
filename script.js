@@ -27,7 +27,7 @@ searchString = "";
 cityInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     clearTimeout(timeout);
-    getCityData(cityInput.value, 1);
+    chooseDirectCity(cityInput.value);
 
   } else  {
     debounce(()=> {
@@ -37,8 +37,8 @@ cityInput.addEventListener("keydown", (e) => {
 });
 
 searchButton.addEventListener("click", ()=> {
-    clearTimeout(timeout);
-    chooseCity(cityInput.value);
+  clearTimeout(timeout);
+  chooseDirectCity(cityInput.value);
 })
 
 // Used in order to stay within API call limit
@@ -58,21 +58,12 @@ const options = {
   }
 }
 
-async function getCityData(input, limit) {
-  let url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?types=City&namePrefix=${input}&limit=${limit}&sort=-population`;
-  const response = await fetch(url, options);
-  const cityData = await response.json();
-
-  console.log(cityData);
-
-  return cityData;
-}
-
+// Displays the top 5 city suggestions based on the searchbar
 async function displaySearchResults(citySearch) {
   citySuggestions.innerHTML = '';
   cityData = await getCityData(citySearch, 5);
 
-  // for each city found, display it in the search results and add a listener
+  // For each city found, display it in the search results and add a listener
   for (let i = 0; i < cityData.data.length; i++) {
     let currentCity = cityData.data[i];
 
@@ -82,86 +73,90 @@ async function displaySearchResults(citySearch) {
     citySuggestions.appendChild(currentCityContainer);
 
     currentCityContainer.addEventListener("click", ()=> {
-      chooseCity(currentCity);
+      displayCity(currentCity);
+      getWeather();
     })
   }
 }
 
+// Gets data and weather for directly entered city
+async function chooseDirectCity(citySearch) {
+  let cityData = await getCityData(citySearch, 1);
+  displayCity(cityData.data[0]);
+  getWeather();
+}
 
+// Uses the GeoDB API to get city information
+async function getCityData(input, limit) {
+  let url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?types=City&namePrefix=${input}&limit=${limit}&sort=-population`;
+  const response = await fetch(url, options);
+  const cityData = await response.json();
 
-
-
-
+  return cityData;
+}
 
 // Resets search results and sets up city data
-function chooseCity (currentCity) {
+function displayCity (currentCity) {
   searchString = "";
   citySuggestions.innerHTML = '';
   cityInput.value = '';
 
   coords = [currentCity.latitude, currentCity.longitude];
   cityHeader.textContent = `${currentCity.name}, ${currentCity.countryCode}`;
-
-  getWeather();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-async function findCities(input) {
-  let url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?types=City&namePrefix=${input}&limit=5&sort=-population`;
-  const response = await fetch(url, options);
-  const cityData = await response.json();
-
-  citySuggestions.innerHTML = '';
-  
-  for (let i = 0; i < cityData.data.length; i++) {
-    let currentCity = cityData.data[i];
-
-    currentCityContainer = document.createElement('p');
-    currentCityContainer.textContent = `${currentCity.name}, ${currentCity.regionCode}, ${currentCity.countryCode}`;
-
-    citySuggestions.appendChild(currentCityContainer);
-
-    currentCityContainer.addEventListener("click", ()=> {
-      citySuggestions.innerHTML = '';
-      cityInput.value = '';
-
-      city = currentCity;
-      coords = [currentCity.latitude, currentCity.longitude];
-      cityHeader.textContent = `${currentCity.name}, ${currentCity.countryCode}`;
-
-      getWeather();
-    })
-  }
-}
-
+// Finds weather for specified coordinates
+// Displays current weather and temperature, plus a forecast for the next 10 hours
 async function getWeather() {
-  innerContainer.style.display = "block";
   const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${coords[0]}&lon=${coords[1]}&exclude=minutely,daily&appid=${apiKey}&units=${units}`);
   const data = await response.json();
 
   // Main weather info
   let mainWeather = data["current"]["weather"][0]["main"];
   let mainDesc = data["current"]["weather"][0]["description"];
-  
   let timezone = data["timezone"];
   
+  innerContainer.style.display = "block";
   temperature.innerHTML = `${Math.round(data["current"]["temp"])}`;
   weatherDesc.innerHTML = `${mainWeather}`;
 
+  setUnits();
+  setTheme(mainDesc);
+
+  // Creating the hourly forecast
+  let hourlyForecast = data["hourly"];
+
+  // Removing past forecast
+  while (hourlyForecastContainer.hasChildNodes()) {
+    hourlyForecastContainer.removeChild(hourlyForecastContainer.lastChild);
+  }
+
+  for (let i = 0; i < 10; i++) {
+    // Setting up time to local
+    let userTime = new Date((hourlyForecast[i]["dt"]) * 1000);
+    let localTime = new Date(userTime.toLocaleString('en-US', {timeZone: timezone}));
+
+    let hour = localTime.getHours();
+    let amPm = hour >= 12 ? 'pm' : 'am';
+    hour = (hour % 12) || 12;
+
+    let hourDiv = document.createElement("div");
+    let hourTemp = hourlyForecast[i]["temp"];
+    let icon = hourlyForecast[i]["weather"][0]["icon"];
+
+    hourDiv.classList.add("hour-div");
+
+    hourDiv.innerHTML = `
+      <h3>${hour}${amPm}</h3>
+      <img src="http://openweathermap.org/img/wn/${icon}.png" id="icon">
+      <p>${Math.round(hourTemp)}°${unitShorthand}</p>
+    `
+    hourlyForecastContainer.appendChild(hourDiv);
+  }
+}
+
+// Sets up weather in either fahrenheit or celsius
+function setUnits() {
   if (units==="metric") {
     unitContainer.innerHTML = `<span class="metric selected">°C</span> / <span class="imperial">F</span>`;
   } else {
@@ -182,41 +177,9 @@ async function getWeather() {
     unitShothand = "F";
     getWeather();
   });
-
-  setTheme(mainDesc);
-
-  // Creating the hourly forecast
-  let hourlyForecast = data["hourly"];
-
-  while (hourlyForecastContainer.hasChildNodes()) {
-    hourlyForecastContainer.removeChild(hourlyForecastContainer.lastChild);
-  }
-
-  for (let i = 0; i < 10; i++) {
-    let localTime = new Date((hourlyForecast[i]["dt"]) * 1000);
-    let time = new Date(localTime.toLocaleString('en-US', {timeZone: timezone}));
-
-    hour = time.getHours();
-
-    let amPm = hour >= 12 ? 'pm' : 'am';
-    hour = (time.getHours() % 12) || 12;
-
-    
-    let hourDiv = document.createElement("div");
-    let hourTemp = hourlyForecast[i]["temp"];
-    let icon = hourlyForecast[i]["weather"][0]["icon"];
-
-    hourDiv.classList.add("hour-div");
-
-    hourDiv.innerHTML = `
-      <h3>${hour}${amPm}</h3>
-      <img src="http://openweathermap.org/img/wn/${icon}.png" id="icon">
-      <p>${Math.round(hourTemp)}°${unitShorthand}</p>
-    `
-    hourlyForecastContainer.appendChild(hourDiv);
-  }
 }
 
+// Takes in the main description and decides on theme based on it
 function setTheme(mainDesc) {
   weatherImg.src = "Images/1x/sun.png";
 
