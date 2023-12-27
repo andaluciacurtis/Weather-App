@@ -12,7 +12,7 @@ const temperature = document.querySelector('.temperature');
 const weatherDesc = document.querySelector('.weather-desc');
 const cityHeader = document.querySelector('.city-header');
 
-const curWeatherImg = document.querySelector('.current-weather-img')
+const weatherImg = document.querySelector('.current-weather-img')
 
 const hourlyForecastContainer = document.querySelector('.hourly-forecast-container');
 const unitContainer = document.querySelector('.units');
@@ -98,8 +98,11 @@ async function getWeather() {
   const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${coords[0]}&lon=${coords[1]}&exclude=minutely,daily&appid=${apiKey}&units=${units}`);
   const data = await response.json();
 
+  console.log(data);
+
   // Main weather info
   let mainWeather = data["current"]["weather"][0]["main"];
+  let mainDesc = data["current"]["weather"][0]["description"];
   
   temperature.innerHTML = `${Math.round(data["current"]["temp"])}`;
   weatherDesc.innerHTML = `${mainWeather}`;
@@ -123,12 +126,7 @@ async function getWeather() {
     getWeather();
   });
 
-  // Set the color scheme and weather images
-  if (mainWeather === "Clear") {
-    curWeatherImg.src= "Images/1x/sun.png";
-  } else if (mainWeather == "Clouds") {
-    curWeatherImg.src= "Images/1x/cloud.png";
-  }
+  setTheme(mainDesc);
 
   // Creating the hourly forecast
   let hourlyForecast = data["hourly"];
@@ -144,8 +142,6 @@ async function getWeather() {
     } else {
       hour = `${currentHour + i}:00`;
     }
-
-    console.log(hourlyForecast[i]);
     
     let hourDiv = document.createElement("div");
     let hourTemp = hourlyForecast[i]["temp"];
@@ -162,30 +158,39 @@ async function getWeather() {
   }
 }
 
-document.getElementById('rainy').addEventListener('click', ()=> {
-  curWeatherImg.src = "Images/1x/rain.png";
-})
+function setTheme(mainDesc) {
+  weatherImg.src = "Images/1x/sun.png";
 
-document.getElementById('sunny').addEventListener('click', ()=>{
-  curWeatherImg.src= "Images/1x/sun.png";
-})
+  if (mainDesc === "clear sky") {
+    weatherImg.src= "Images/1x/sun.png";
 
-document.getElementById('partcloudy').addEventListener('click', ()=>{
-  curWeatherImg.src= "Images/1x/partcloud.png";
-})
+    document.documentElement.className = 'theme-sunny';
 
-document.getElementById('cloudy').addEventListener('click', ()=>{
-  curWeatherImg.src= "Images/1x/cloud.png";
-})
 
-document.getElementById('snowy').addEventListener('click', ()=>{
-  curWeatherImg.src= "Images/1x/snow.png";
-})
+  } else if (mainDesc === "few clouds") {
+    weatherImg.src= "Images/1x/partcloud.png";
+     
+    document.documentElement.className = 'theme-partcloudy';
 
-document.getElementById('stormy').addEventListener('click', ()=>{
-  curWeatherImg.src= "Images/1x/storm.png";
-})
+  } else if (mainDesc === "scattered clouds" || mainDesc === "broken clouds") {
+     weatherImg.src = "Images/1x/cloud.png";
 
-document.getElementById('windy').addEventListener('click', ()=>{
-  curWeatherImg.src= "Images/1x/wind.png";
-})
+     document.documentElement.className = 'theme-cloudy';
+
+   } else if (mainDesc === "shower rain" || mainDesc === "rain") {
+     weatherImg.src = "Images/1x/rain.png";
+
+     document.documentElement.className = 'theme-rainy';
+
+   } else if (mainDesc === "thunderstorm") {
+
+     weatherImg.src = "Images/1x/storm.png";
+
+     document.documentElement.className = 'theme-stormy';
+
+   } else if (mainDesc === "snow") {
+     weatherImg.src = "Images/1x/snow.png";
+
+     document.documentElement.className = 'theme-snowy';
+   }
+}
