@@ -18,7 +18,8 @@
 
   --text-shadow-color: rgba(109, 146, 216, 0.308);
 
-  --bright-accent: rgb(246, 255, 162);
+  --scrollbar-color: rgb(246, 255, 162);
+  --search-color: rgb(246, 255, 162);
 }
 
 :root:has(#partcloudy:checked) {
@@ -34,7 +35,8 @@
 
   --text-shadow-color: rgba(109, 146, 216, 0.308);
 
-  --bright-accent: rgb(193, 251, 255);
+  --scrollbar-color: rgb(193, 251, 255);
+  --search-color: rgb(193, 251, 255);
 }
 
 :root:has(#cloudy:checked) {
@@ -50,7 +52,8 @@
 
   --text-shadow-color: rgba(96, 118, 160, 0.308);
 
-  --bright-accent: rgb(200, 220, 233);
+  --scrollbar-color: rgb(200, 220, 233);
+  --search-color: rgb(200, 220, 233);
 }
 
 :root:has(#rainy:checked) {
@@ -66,23 +69,25 @@
   
   --text-shadow-color: rgba(63, 78, 110, 0.178);
 
-  --bright-accent: #b5dbff;
+  --scrollbar-color: #b5dbff;
+  --search-color: #b5dbff;
 }
 
 :root:has(#snowy:checked) {
   --bg-gradient: linear-gradient(215deg, #ffffff, #dcf8ff, #cfdcff);
 
-  --main-bg-color: rgba(131, 182, 223, 0.308);
-  --accent-bg: #98c5ff46;
+  --main-bg-color: rgba(133, 169, 199, 0.308);
+  --accent-bg: #578acc1c;
 
   --title-color: rgba(131, 182, 223, 0.308);
   --text-color: white;
-  --secondary-text-color: rgba(129, 171, 211, 0.664);
-  --city-text-color: rgb(255, 254, 216);
+  --secondary-text-color: rgb(255, 245, 180);
+  --city-text-color: rgba(162, 192, 216, 0.774);
 
-  --text-shadow-color: rgba(18, 31, 51, 0.219);
+  --text-shadow-color: rgba(123, 171, 211, 0.61);
   
-  --bright-accent: rgb(203, 255, 248);
+  --scrollbar-color: rgb(203, 255, 248);
+  --search-color: rgba(112, 161, 201, 0.425);
 }
 
 :root:has(#stormy:checked) {
@@ -97,16 +102,25 @@
   --city-text-color: rgb(255, 215, 107);
 
   --text-shadow-color: #3e3e5e18;
-
-  --bright-accent: rgb(255, 232, 157);
+  
+  --scrollbar-color: rgb(255, 232, 157);
+  --search-color: rgb(255, 232, 157);
 }
 
 :root:has(#windy:checked) {
-  --bg-gradient: linear-gradient(215deg, #c5d2dd, #87a7d8);
-  --main-bg-color: rgba(75, 102, 255, 0.308);
-  --accent-bg: #a1b6e2;
-  --bright-accent: rgb(246, 255, 162);
-  --title-color: rgba(75, 102, 255, 0.308);
+  --bg-gradient: linear-gradient(215deg, #c5d2dd, #aac0e0, #adb8c5);
+
+  --main-bg-color: rgba(96, 118, 160, 0.308);
+  --accent-bg: #abc1df7c;
+  
+  --title-color: rgba(93, 116, 160, 0.308);
+  --text-color: white;
+  --secondary-text-color: rgba(91, 100, 139, 0.664);
+  --city-text-color: rgb(200, 220, 233);
+
+  --text-shadow-color: rgba(96, 118, 160, 0.308);
+
+  --bright-accent: rgb(200, 220, 233);
 }
 
 body, html {
@@ -128,7 +142,7 @@ h2 {
   font-size: 120px;
   color: var(--text-color);
 
-  text-shadow: var(--main-bg-color) 0 0 10px;
+  text-shadow: var(--main-bg-color) 0 0 8px;
 }
 
 h3 {
@@ -160,7 +174,7 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--bright-accent);
+  background: var(--scrollbar-color);
   border-radius: 10px;
 }
 
@@ -198,7 +212,6 @@ main {
 .city-header {
   font-size: 25px;
   color: var(--city-text-color);
-  text-shadow: var(--text-shadow-color) 0 0 5px;
 }
 
 main path {
@@ -222,7 +235,7 @@ main svg {
 }
 
 .top-searchbar i {
-  background-color: var(--bright-accent);
+  background-color: var(--search-color);
   padding: 10px;
   border-radius: 50px;
   color: var(--secondary-text-color);
@@ -268,7 +281,7 @@ main svg {
 
 .temp-container {
   display: flex;
-  align-items: center;
+  align-items: end;
   justify-content: center;
 }
 
@@ -298,7 +311,6 @@ main svg {
   
   font-size: 25px;
   color: var(--text-color);
-  text-shadow: var(--text-shadow-color) 0 0 10px;
   
   font-family: 'Oswald', sans-serif;
 }
@@ -306,6 +318,7 @@ main svg {
 .units {
   font-size: 13px;
   cursor: pointer;
+  padding-bottom: 30px;
   
   color: var(--secondary-text-color);
 }
