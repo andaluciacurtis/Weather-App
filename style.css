@@ -18,20 +18,25 @@
   --bright-accent: rgb(246, 255, 162);
 }
 
+:root:has(#partcloudy:checked) {
+  --bg-gradient: linear-gradient(215deg, #90f5f9, #b5d8e7, #c5d2dd, #aac0e0, #87a7d8);
+
+  --main-bg-color: rgba(109, 146, 216, 0.308);
+  --accent-bg: rgba(189, 208, 236, 0.486);
+
+  --title-color: rgba(109, 146, 216, 0.308);
+  --text-color: white;
+  --secondary-text-color: rgba(109, 146, 216, 0.664);
+
+  --bright-accent: rgb(193, 251, 255);
+}
+
 :root:has(#rainy:checked) {
   --bg-gradient: linear-gradient(215deg, #c5d2dd, #6c8ec0);
   --main-bg-color: rgba(76, 83, 122, 0.308);
   --accent-bg: #6d7ca871;
   --bright-accent: rgb(246, 255, 162);
   --title-color: rgba(76, 83, 122, 0.308);
-}
-
-:root:has(#partcloudy:checked) {
-  --bg-gradient: linear-gradient(215deg, #90f5f9, #b5d8e7, #c5d2dd, #aac0e0, #87a7d8);
-  --main-bg-color: rgba(109, 146, 216, 0.308);
-  --accent-bg: rgba(189, 208, 236, 0.486);
-  --bright-accent: rgb(246, 255, 162);
-  --title-color: rgba(109, 146, 216, 0.308);
 }
 
 :root:has(#cloudy:checked) {
