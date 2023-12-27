@@ -14,6 +14,9 @@
   --title-color: rgba(109, 146, 216, 0.308);
   --text-color: white;
   --secondary-text-color: rgba(109, 146, 216, 0.664);
+  --city-text-color: rgb(246, 255, 162);
+
+  --text-shadow-color: rgba(109, 146, 216, 0.308);
 
   --bright-accent: rgb(246, 255, 162);
 }
@@ -27,40 +30,59 @@
   --title-color: rgba(109, 146, 216, 0.308);
   --text-color: white;
   --secondary-text-color: rgba(109, 146, 216, 0.664);
+  --city-text-color: rgb(193, 251, 255);
+
+  --text-shadow-color: rgba(109, 146, 216, 0.308);
 
   --bright-accent: rgb(193, 251, 255);
 }
 
-:root:has(#rainy:checked) {
-  --bg-gradient: linear-gradient(215deg, #c5d2dd, #6c8ec0);
-  --main-bg-color: rgba(76, 83, 122, 0.308);
-  --accent-bg: #6d7ca871;
-  --bright-accent: rgb(246, 255, 162);
-  --title-color: rgba(76, 83, 122, 0.308);
-}
-
 :root:has(#cloudy:checked) {
   --bg-gradient: linear-gradient(215deg, #c5d2dd, #aac0e0, #adb8c5);
-  --main-bg-color: rgba(93, 116, 160, 0.308);
-  --accent-bg: #7995b97c;
-  --bright-accent: rgb(246, 255, 162);
+
+  --main-bg-color: rgba(96, 118, 160, 0.308);
+  --accent-bg: #abc1df7c;
+  
   --title-color: rgba(93, 116, 160, 0.308);
+  --text-color: white;
+  --secondary-text-color: rgba(91, 100, 139, 0.664);
+  --city-text-color: rgb(200, 220, 233);
+
+  --text-shadow-color: rgba(96, 118, 160, 0.308);
+
+  --bright-accent: rgb(200, 220, 233);
 }
 
-:root:has(#windy:checked) {
-  --bg-gradient: linear-gradient(215deg, #c5d2dd, #87a7d8);
-  --main-bg-color: rgba(75, 102, 255, 0.308);
-  --accent-bg: #a1b6e2;
-  --bright-accent: rgb(246, 255, 162);
-  --title-color: rgba(75, 102, 255, 0.308);
+:root:has(#rainy:checked) {
+  --bg-gradient: linear-gradient(215deg, #c5d2dd, #6c8ec0);
+
+  --main-bg-color: rgba(63, 78, 110, 0.308);
+  --accent-bg: #9dc5fa31;
+  
+  --title-color: rgba(76, 83, 122, 0.308);
+  --text-color: white;
+  --secondary-text-color: rgba(58, 73, 100, 0.664);
+  --city-text-color: #b5dbff;
+  
+  --text-shadow-color: rgba(63, 78, 110, 0.178);
+
+  --bright-accent: #b5dbff;
 }
 
 :root:has(#snowy:checked) {
   --bg-gradient: linear-gradient(215deg, #ffffff, #dcf8ff, #cfdcff);
+
   --main-bg-color: rgba(131, 182, 223, 0.308);
-  --bright-accent: rgb(246, 255, 162);
-  --accent-bg: #9dbbd6;
+  --accent-bg: #98c5ff46;
+
   --title-color: rgba(131, 182, 223, 0.308);
+  --text-color: white;
+  --secondary-text-color: rgba(129, 171, 211, 0.664);
+  --city-text-color: rgb(255, 254, 216);
+
+  --text-shadow-color: rgba(18, 31, 51, 0.219);
+  
+  --bright-accent: rgb(203, 255, 248);
 }
 
 :root:has(#stormy:checked) {
@@ -69,6 +91,14 @@
   --accent-bg: #6f7da5;
   --bright-accent: rgb(246, 255, 162);
   --title-color: rgba(189, 187, 255, 0.308);
+}
+
+:root:has(#windy:checked) {
+  --bg-gradient: linear-gradient(215deg, #c5d2dd, #87a7d8);
+  --main-bg-color: rgba(75, 102, 255, 0.308);
+  --accent-bg: #a1b6e2;
+  --bright-accent: rgb(246, 255, 162);
+  --title-color: rgba(75, 102, 255, 0.308);
 }
 
 body, html {
@@ -89,18 +119,18 @@ h1 {
 
 h2 {
   font-size: 120px;
-  color: white;
+  color: var(--text-color);
 
   text-shadow: var(--main-bg-color) 0 0 10px;
 }
 
 h3 {
   font-size: 20px;
-  color: white;
+  color: var(--text-color);
 }
 
 p {
-  color: white;
+  color: var(--text-color);
 }
 
 input {
@@ -160,8 +190,8 @@ main {
 
 .city-header {
   font-size: 25px;
-  color: var(--bright-accent);
-  text-shadow: var(--main-bg-color) 0 0 5px;
+  color: var(--city-text-color);
+  text-shadow: var(--text-shadow-color) 0 0 5px;
 }
 
 main path {
@@ -200,7 +230,7 @@ main svg {
   z-index: 999;
 
   border-radius: 0 0 15px 15px;
-  background-color: white;
+  background-color: var(--text-color);
 }
 
 .city-suggestions p {
@@ -260,8 +290,8 @@ main svg {
   color: black;
   
   font-size: 25px;
-  color: white;
-  text-shadow: var(--main-bg-color) 0 0 10px;
+  color: var(--text-color);
+  text-shadow: var(--text-shadow-color) 0 0 10px;
   
   font-family: 'Oswald', sans-serif;
 }
