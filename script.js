@@ -23,26 +23,37 @@ const innerContainer = document.querySelector('.inner-container');
 
 let units = "imperial";
 let unitShorthand = "F";
-let city = "";
+
 let coords = [];
 
 var today = new Date();
 var currentHour = today.getHours();
 
+
 var cityInput = document.querySelector(".city-input");
 
-cityInput.oninput = ()=> {
-  debounce(()=> {
-     findCities(cityInput.value)
-  }, 1000);
-};
+// cityInput.oninput = ()=> {
+//   debounce(()=> {
+//      findCities(cityInput.value)
+//   }, 1000);
+// };
+
+searchString = "";
 
 cityInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
+    searchString = "";
     city = cityInput.value;
-    coords = getCoordinates();
-    getWeather();
-  }
+    
+    //cancel find cities search
+    citySuggestions.innerHTML = '';
+    cityInput.value = '';
+
+    getWeatherByCoordinates();
+  } else  {
+    debounce(()=> {
+      findCities(cityInput.value)}, 1000);
+    }
 });
 
 // On opening webpage, choose random theme
@@ -92,11 +103,12 @@ async function findCities(input) {
   }
 }
 
-async function getCoordinates() {
+async function getWeatherByCoordinates() {
   const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`);
   const data = await response.json();
-  
-  return [data[0].lat, data[0].lon];
+  coords = [data[0].lat, data[0].lon];
+
+  getWeather();
 }
 
 async function getWeather() {
