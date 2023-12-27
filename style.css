@@ -17,6 +17,7 @@
   --bg-gradient: linear-gradient(215deg, #c5d2dd, #6c8ec0);
   --main-bg-color: rgba(76, 83, 122, 0.308);
   --accent-bg: #6d7ca871;
+  --bright-accent: rgb(246, 255, 162);
   --title-color: rgba(76, 83, 122, 0.308);
 }
 
@@ -24,6 +25,7 @@
   --bg-gradient: linear-gradient(215deg, #90f5f9, #b5d8e7, #c5d2dd, #aac0e0, #87a7d8);
   --main-bg-color: rgba(109, 146, 216, 0.308);
   --accent-bg: rgba(189, 208, 236, 0.486);
+  --bright-accent: rgb(246, 255, 162);
   --title-color: rgba(109, 146, 216, 0.308);
 }
 
@@ -31,6 +33,7 @@
   --bg-gradient: linear-gradient(215deg, #c5d2dd, #aac0e0, #adb8c5);
   --main-bg-color: rgba(93, 116, 160, 0.308);
   --accent-bg: #7995b97c;
+  --bright-accent: rgb(246, 255, 162);
   --title-color: rgba(93, 116, 160, 0.308);
 }
 
@@ -38,12 +41,14 @@
   --bg-gradient: linear-gradient(215deg, #c5d2dd, #87a7d8);
   --main-bg-color: rgba(75, 102, 255, 0.308);
   --accent-bg: #a1b6e2;
+  --bright-accent: rgb(246, 255, 162);
   --title-color: rgba(75, 102, 255, 0.308);
 }
 
 :root:has(#snowy:checked) {
   --bg-gradient: linear-gradient(215deg, #ffffff, #dcf8ff, #cfdcff);
   --main-bg-color: rgba(131, 182, 223, 0.308);
+  --bright-accent: rgb(246, 255, 162);
   --accent-bg: #9dbbd6;
   --title-color: rgba(131, 182, 223, 0.308);
 }
@@ -52,6 +57,7 @@
   --bg-gradient: linear-gradient(215deg, #96a6d3, #565e8a);
   --main-bg-color: rgba(189, 187, 255, 0.308);
   --accent-bg: #6f7da5;
+  --bright-accent: rgb(246, 255, 162);
   --title-color: rgba(189, 187, 255, 0.308);
 }
 
@@ -83,9 +89,6 @@ h3 {
   color: white;
 }
 
-h4 {
-}
-
 p {
   color: white;
 }
@@ -102,6 +105,16 @@ input {
 button {
   border: none;
   border-radius: 50px;
+}
+
+
+::-webkit-scrollbar {
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bright-accent);
+  border-radius: 10px;
 }
 
 /* COMPONENTS */
@@ -149,14 +162,23 @@ main svg {
   margin: -1px 0 -1px 0;
 }
 
-.top-row {
-  display: flex;
-  justify-content: space-around;
-  align-items: top;
+.search-box {
+  align-items: center;
 }
 
-.top-row h2 {
-  padding-top: 10px;
+.top-searchbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+.top-searchbar i {
+  background-color: var(--bright-accent);
+  padding: 10px;
+  border-radius: 50px;
+  color: var(--main-bg-color);
+  cursor: pointer;
 }
 
 .city-suggestions {

@@ -33,7 +33,7 @@ var cityInput = document.querySelector(".city-input");
 
 cityInput.oninput = ()=> {
   debounce(()=> {
-    findCities(cityInput.value)
+     findCities(cityInput.value)
   }, 1000);
 };
 
@@ -76,10 +76,12 @@ async function findCities(input) {
 
     currentCityContainer.addEventListener("click", ()=> {
       citySuggestions.innerHTML = '';
+      cityInput.value = '';
+
       city = currentCity;
       coords = [currentCity.latitude, currentCity.longitude];
       cityHeader.textContent = `${currentCity.name}, ${currentCity.countryCode}`;
-      
+
       getWeather();
     })
   }
