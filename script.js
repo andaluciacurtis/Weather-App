@@ -85,16 +85,21 @@ async function displaySearchResults(citySearch) {
 // Gets data and weather for directly entered city
 async function chooseDirectCity(citySearch) {
   let cityData = await getCityData(citySearch, 1);
-  errorMessage.innerHTML = '';
-
-  // if city is not a real location
-  if (cityData === null || cityData.data.length === 0) {
-    errorMessage.innerHTML = "Please enter a valid city.";
+  errorMessage.innerHTML = '';;
+  
+  try {
+    displayCity(cityData.data[0]);
+  } catch (err) {
+    if (cityData.message) {
+      errorMessage.innerHTML = cityData.message;
+    } else {
+      errorMessage.innerHTML = "Please enter a valid city.";
+    }
     return;
   }
 
-  displayCity(cityData.data[0]);
   getWeather();
+
 }
 
 // Uses the GeoDB API to get city information
