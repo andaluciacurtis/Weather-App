@@ -8,7 +8,9 @@ const cityHeader = document.querySelector('.city-header');
 const temperature = document.querySelector('.temperature');
 const unitContainer = document.querySelector('.units');
 const weatherDesc = document.querySelector('.weather-desc');
-const weatherImg = document.querySelector('.current-weather-img')
+const weatherImg = document.querySelector('.current-weather-img');
+
+const errorMessage = document.querySelector(".error-message");
 
 const hourlyForecastContainer = document.querySelector('.hourly-forecast-container');
 
@@ -60,6 +62,7 @@ const options = {
 
 // Displays the top 5 city suggestions based on the searchbar
 async function displaySearchResults(citySearch) {
+  errorMessage.innerHTML = '';
   citySuggestions.innerHTML = '';
   cityData = await getCityData(citySearch, 5);
 
@@ -82,6 +85,14 @@ async function displaySearchResults(citySearch) {
 // Gets data and weather for directly entered city
 async function chooseDirectCity(citySearch) {
   let cityData = await getCityData(citySearch, 1);
+  errorMessage.innerHTML = '';
+
+  // if city is not a real location
+  if (cityData === null || cityData.data.length === 0) {
+    errorMessage.innerHTML = "Please enter a valid city.";
+    return;
+  }
+
   displayCity(cityData.data[0]);
   getWeather();
 }

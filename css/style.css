@@ -134,6 +134,12 @@ main {
   background-color: var(--accent-bg);
 }
 
+.error-message {
+  color: rgb(221, 99, 99);
+  text-align: center;
+  margin-left: -50px;
+}
+
 .inner-container {
   display: none;
 }
