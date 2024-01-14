@@ -50,6 +50,10 @@ input::placeholder {
   color: var(--title-color);
 }
 
+input:focus {
+  outline: 2px solid var(--search-color);
+}
+
 button {
   border: none;
   border-radius: 50px;
@@ -101,6 +105,11 @@ main {
   border-radius: 50px;
   color: var(--secondary-text-color);
   cursor: pointer;
+}
+
+.top-searchbar i:hover {
+  background-color: var(--main-bg-color);
+  color: var(--search-color);
 }
 
 .city-suggestions {
