@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const innerContainer = document.querySelector('.inner-container');
 
 const citySuggestions = document.querySelector('.city-suggestions');
@@ -57,7 +55,7 @@ let debounce = function(func, delay) {
 const options = {
   method: 'GET',
   headers: {
-     'X-RapidAPI-Key': process.env.XRAPID_API_KEY,
+     'X-RapidAPI-Key': XRAPID_API_KEY,
      'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com',
   }
 }
@@ -126,7 +124,7 @@ function displayCity (currentCity) {
 // Finds weather for specified coordinates
 // Displays current weather and temperature, plus a forecast for the next 10 hours
 async function getWeather() {
-  const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${coords[0]}&lon=${coords[1]}&exclude=minutely,daily&appid=${process.env.WEATHER_API_KEY}&units=${units}`);
+  const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${coords[0]}&lon=${coords[1]}&exclude=minutely,daily&appid=${WEATHER_API_KEY}&units=${units}`);
   const data = await response.json();
 
   // Main weather info
